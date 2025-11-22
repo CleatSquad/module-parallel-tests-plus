@@ -6,10 +6,10 @@ This module significantly reduces execution time for static, unit, integration a
 
 ## Badges
 
-[![Latest Stable Version](http://poser.pugx.org/cleatsquad/cleatsquad/module-parallel-tests-plus/v)](https://packagist.org/packages/cleatsquad/cleatsquad/module-parallel-tests-plus)
-[![Total Downloads](http://poser.pugx.org/cleatsquad/cleatsquad/module-parallel-tests-plus/downloads)](https://packagist.org/packages/cleatsquad/cleatsquad/module-parallel-tests-plus)
-[![Latest Unstable Version](http://poser.pugx.org/cleatsquad/cleatsquad/module-parallel-tests-plus/v/unstable)](https://packagist.org/packages/cleatsquad/cleatsquad/module-parallel-tests-plus)
-[![License](http://poser.pugx.org/cleatsquad/cleatsquad/module-parallel-tests-plus/license)](https://packagist.org/packages/cleatsquad/cleatsquad/module-parallel-tests-plus)
+[![Latest Stable Version](http://poser.pugx.org/cleatsquad/module-parallel-tests-plus/v)](https://packagist.org/packages/cleatsquad/module-parallel-tests-plus)
+[![Total Downloads](http://poser.pugx.org/cleatsquad/module-parallel-tests-plus/downloads)](https://packagist.org/packages/cleatsquad/module-parallel-tests-plus)
+[![Latest Unstable Version](http://poser.pugx.org/cleatsquad/module-parallel-tests-plus/v/unstable)](https://packagist.org/packages/cleatsquad/module-parallel-tests-plus)
+[![License](http://poser.pugx.org/cleatsquad/module-parallel-tests-plus/license)](https://packagist.org/packages/cleatsquad/module-parallel-tests-plus)
 
 ---
 
