@@ -1,4 +1,4 @@
-# CleatSquad ParallelTestsPlus
+# ParallelTestsPlus
 
 A Magento 2 extension that enhances the core `dev:tests:run` command by enabling **parallel execution** of developer tests using **ParaTest**.
 
