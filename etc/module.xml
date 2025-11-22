@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright (c) 2025 Mohamed EL Mrabet
+ * CleatSquad - https://cleatsquad.dev
+ *
+ * This file is part of the CleatSquad_ParallelTestsPlus module.
+ * Licensed under the MIT License. See the LICENSE file in the module root.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="CleatSquad_ParallelTestsPlus" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Developer"/>
+        </sequence>
+    </module>
+
+</config>

@@ -1,0 +1,45 @@
+{
+    "name": "cleatsquad/module-parallel-tests-plus",
+    "description": "Magento 2 module that enhances the dev:tests:run CLI command by enabling ParaTest parallel execution using --processes and --runner options.",
+    "type": "magento2-module",
+    "version": "1.1.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mohamed EL Mrabet",
+            "email": "contact@cleatsquad.dev",
+            "homepage": "https://cleatsquad.dev",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "magento2",
+        "testing",
+        "paratest",
+        "phpunit",
+        "parallel-testing",
+        "magento-testing",
+        "dev-tests-run",
+        "static-tests",
+        "developer-tools"
+    ],
+    "support": {
+        "issues": "https://github.com/cleatsquad/module-parallel-tests-plus/issues",
+        "source": "https://github.com/cleatsquad/module-parallel-tests-plus",
+        "docs": "https://github.com/cleatsquad/module-parallel-tests-plus"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "CleatSquad\\ParallelTestsPlus\\": ""
+        }
+    },
+    "require": {
+        "magento/module-developer": ">=103.0",
+        "brianium/paratest": "^7.4"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
