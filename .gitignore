@@ -1,0 +1,7 @@
+dev/bin/auth.json
+composer.lock
+vendor/
+.php_cs.cache
+.vscode
+.idea
+/auth.json

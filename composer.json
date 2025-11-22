@@ -36,10 +36,22 @@
             "CleatSquad\\ParallelTestsPlus\\": ""
         }
     },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://repo.magento.com/"
+      }
+    ],
     "require": {
-        "magento/module-developer": ">=103.0",
-        "brianium/paratest": "^7.4"
+        "php": "~8.2|~8.3|~8.4",
+        "brianium/paratest": "^7.4",
+        "magento/module-developer": "^100.4"
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": true
+        }
+    }
 }
