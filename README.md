@@ -103,7 +103,7 @@ bin/magento dev:tests:run static --runner=WrapperRunner
 ### Pass arguments to ParaTest/PHPUnit via Magento native `--arguments`
 
 ```
-bin/magento dev:tests:run static -c "--filter=MyTest"
+bin/magento dev:tests:run static -c"--filter=MyTest"
 ```
 
 ---
