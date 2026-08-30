@@ -1,36 +1,63 @@
-name: CI
+---
+name: Code style and static analysis
 
 on:
+  pull_request:
   push:
     branches: [master]
-  pull_request:
+
+permissions:
+  contents: read
 
 jobs:
-  test:
+  phpstan:
+    name: PHPStan
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php: ["8.2", "8.3", "8.4"]
+
+    container:
+      image: mohelmrabet/magento-frankenphp:php8.2-fp1.10.1-dev
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: shivammathur/setup-php@v2
+      - name: Run PHPStan
+        uses: mohaelmrabet/magento-php-qa-action@v1
         with:
-          php-version: ${{ matrix.php }}
-          coverage: none
+          command: phpstan
+          composer-auth: ${{ secrets.COMPOSER_AUTH }}
 
-      - name: Validate composer.json
-        run: composer validate --strict --no-check-all
+  php-cs-fixer:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
 
-      - name: Configure Magento Marketplace auth
-        if: ${{ env.MAGENTO_USERNAME != '' }}
-        env:
-          MAGENTO_USERNAME: ${{ secrets.MAGENTO_USERNAME }}
-          MAGENTO_PASSWORD: ${{ secrets.MAGENTO_PASSWORD }}
-        run: composer config http-basic.repo.magento.com "$MAGENTO_USERNAME" "$MAGENTO_PASSWORD"
+    container:
+      image: mohelmrabet/magento-frankenphp:php8.2-fp1.10.1-dev
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Run unit tests
-        run: composer test
+      - name: Run PHP-CS-Fixer
+        uses: mohaelmrabet/magento-php-qa-action@v1
+        with:
+          command: cs-fixer
+          composer-auth: ${{ secrets.COMPOSER_AUTH }}
+
+  unit-tests:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+
+    container:
+      image: mohelmrabet/magento-frankenphp:php8.2-fp1.10.1-dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run PHPUnit
+        uses: mohaelmrabet/magento-php-qa-action@v1
+        with:
+          command: phpunit
+          composer-auth: ${{ secrets.COMPOSER_AUTH }}
+          phpunit-path: ./Test/Unit
