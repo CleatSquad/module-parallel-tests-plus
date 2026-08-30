@@ -98,6 +98,11 @@ class DevTestsRunCommand extends OriginalCommand
         foreach ($runCommands as $key) {
             [$dir, $options] = $this->commands[$key];
             $dirName = realpath(BP . '/dev/tests/' . $dir);
+            if ($dirName === false) {
+                $output->writeln('<error>Test directory not found: ' . BP . '/dev/tests/' . $dir . '</error>');
+                $failures[] = 'missing directory: ' . $dir;
+                continue;
+            }
             chdir($dirName);
             // Build ParaTest command
             $command = sprintf(
@@ -116,6 +121,10 @@ class DevTestsRunCommand extends OriginalCommand
                 $command .= ' ' . $commandArguments;
             }
             $this->logCommand($output, $dirName, $command);
+            // $commandArguments is passed through unescaped, same as Magento's native
+            // dev:tests:run: it is meant to carry multiple shell tokens (e.g. "--filter=Foo bar.php"),
+            // so escaping the whole string would break that. This command is a local dev CLI tool
+            // invoked directly by the developer, not fed untrusted input from a remote caller.
             // passthru() call have to be here.
             // phpcs:ignore Magento2.Security.InsecureFunction
             passthru($command, $returnVal);
