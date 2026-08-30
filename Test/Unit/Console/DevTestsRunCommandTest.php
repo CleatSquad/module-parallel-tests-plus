@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) 2025 Mohamed EL Mrabet
  * CleatSquad - https://cleatsquad.dev
@@ -13,7 +14,6 @@ namespace CleatSquad\ParallelTestsPlus\Test\Unit\Console;
 use CleatSquad\ParallelTestsPlus\Console\DevTestsRunCommand;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
-
 
 require_once __DIR__ . '/../_files/mock_passthru.php';
 
