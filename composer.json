@@ -47,11 +47,17 @@
         "brianium/paratest": "^7.4",
         "magento/module-developer": "^100.4"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5 || ^11.0"
+    },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
             "magento/composer-dependency-version-audit-plugin": true
         }
+    },
+    "scripts": {
+        "test": "phpunit --testsuite unit"
     }
 }

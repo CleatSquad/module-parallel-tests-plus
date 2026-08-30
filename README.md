@@ -2,10 +2,11 @@
 
 A Magento 2 extension that enhances the core `dev:tests:run` command by enabling **parallel execution** of developer tests using **ParaTest**.
 
-This module significantly reduces execution time for static, unit, integration and integrity tests — with zero core overrides and full CI/CD compatibility.
+This module significantly reduces execution time for static, unit, integration and integrity tests — via a clean declarative DI override (no core file patching) and full CI/CD compatibility.
 
 ## Badges
 
+[![CI](https://github.com/CleatSquad/module-parallel-tests-plus/actions/workflows/ci.yml/badge.svg)](https://github.com/CleatSquad/module-parallel-tests-plus/actions/workflows/ci.yml)
 [![Latest Stable Version](http://poser.pugx.org/cleatsquad/module-parallel-tests-plus/v)](https://packagist.org/packages/cleatsquad/module-parallel-tests-plus)
 [![Total Downloads](http://poser.pugx.org/cleatsquad/module-parallel-tests-plus/downloads)](https://packagist.org/packages/cleatsquad/module-parallel-tests-plus)
 [![Latest Unstable Version](http://poser.pugx.org/cleatsquad/module-parallel-tests-plus/v/unstable)](https://packagist.org/packages/cleatsquad/module-parallel-tests-plus)
@@ -40,11 +41,13 @@ You can install this module using Composer (recommended) or manually.
 
 ### 🔹 1. Install via Composer (recommended)
 
-Requires Packagist entry:
-
 ```
 composer require cleatsquad/module-parallel-tests-plus --dev
 ```
+
+> **Note:** this package depends on `magento/module-developer`, resolved via
+> `repo.magento.com`. Make sure your project has a valid Magento Marketplace
+> `auth.json` configured, otherwise Composer will fail to resolve it.
 
 Then upgrade Magento:
 
@@ -111,7 +114,9 @@ bin/magento dev:tests:run integration --processes 2 -c" testsuite/Magento/Catalo
 
 ## 🤝 Support & Contributions
 
-Issues and pull requests are welcome.
+Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+For security issues, see [SECURITY.md](SECURITY.md) instead of opening a
+public issue.
 
 GitHub:  
 https://github.com/CleatSquad/module-parallel-tests-plus

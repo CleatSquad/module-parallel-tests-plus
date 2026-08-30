@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ["8.2", "8.3", "8.4"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict --no-check-all
+
+      - name: Configure Magento Marketplace auth
+        if: ${{ env.MAGENTO_USERNAME != '' }}
+        env:
+          MAGENTO_USERNAME: ${{ secrets.MAGENTO_USERNAME }}
+          MAGENTO_PASSWORD: ${{ secrets.MAGENTO_PASSWORD }}
+        run: composer config http-basic.repo.magento.com "$MAGENTO_USERNAME" "$MAGENTO_PASSWORD"
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run unit tests
+        run: composer test
