@@ -174,4 +174,28 @@ class DevTestsRunCommandTest extends TestCase
             $tester->getDisplay()
         );
     }
+
+    public function testMissingTestDirectoryIsReportedAsFailure()
+    {
+        global $devTestsRunCommandTestResult;
+        $devTestsRunCommandTestResult = 0;
+
+        $dir = BP . '/dev/tests/unit';
+        rename($dir, $dir . '.bak');
+
+        try {
+            $tester = new CommandTester($this->command);
+            $tester->execute([DevTestsRunCommand::INPUT_ARG_TYPE => 'unit']);
+
+            $output = $tester->getDisplay();
+            $this->assertStringContainsString(
+                'Test directory not found',
+                $output,
+                'A missing test directory should be reported instead of chdir()-ing into it blindly'
+            );
+            $this->assertStringContainsString('FAILED - ', $output);
+        } finally {
+            rename($dir . '.bak', $dir);
+        }
+    }
 }
