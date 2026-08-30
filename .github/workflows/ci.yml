@@ -1,0 +1,63 @@
+---
+name: Code style and static analysis
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+
+    container:
+      image: mohelmrabet/magento-frankenphp:php8.2-fp1.10.1-dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run PHPStan
+        uses: mohaelmrabet/magento-php-qa-action@v1
+        with:
+          command: phpstan
+          composer-auth: ${{ format('{{"http-basic":{{"repo.magento.com":{{"username":"{0}","password":"{1}"}}}}}}', secrets.MAGENTO_AUTH_USERNAME, secrets.MAGENTO_AUTH_PASSWORD) }}
+
+  php-cs-fixer:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
+
+    container:
+      image: mohelmrabet/magento-frankenphp:php8.2-fp1.10.1-dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run PHP-CS-Fixer
+        uses: mohaelmrabet/magento-php-qa-action@v1
+        with:
+          command: cs-fixer
+          composer-auth: ${{ format('{{"http-basic":{{"repo.magento.com":{{"username":"{0}","password":"{1}"}}}}}}', secrets.MAGENTO_AUTH_USERNAME, secrets.MAGENTO_AUTH_PASSWORD) }}
+
+  unit-tests:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+
+    container:
+      image: mohelmrabet/magento-frankenphp:php8.2-fp1.10.1-dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run PHPUnit
+        uses: mohaelmrabet/magento-php-qa-action@v1
+        with:
+          command: phpunit
+          composer-auth: ${{ format('{{"http-basic":{{"repo.magento.com":{{"username":"{0}","password":"{1}"}}}}}}', secrets.MAGENTO_AUTH_USERNAME, secrets.MAGENTO_AUTH_PASSWORD) }}
+          phpunit-path: ./Test/Unit
